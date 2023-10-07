@@ -7,6 +7,17 @@ import (
 )
 
 func AddOrRemove(aPtr *[]int, elem int) {
+	for i := 0; i < len(*aPtr)-1; i++ {
+		if (*aPtr)[i] == elem {
+			(*aPtr)[i], (*aPtr)[i+1] = (*aPtr)[i+1], (*aPtr)[i]
+		}
+	}
+
+	if (*aPtr)[len(*aPtr)-1] == elem {
+		*aPtr = (*aPtr)[:len(*aPtr)-1]
+	} else {
+		*aPtr = append(*aPtr, elem)
+	}
 }
 
 func TestAddOrRemove(t *testing.T) {
